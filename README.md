@@ -5,18 +5,11 @@
 🚀 多平台消息推送工具 🚀
 
 [![GitHub license](https://img.shields.io/github/license/xiaoqiangclub/MessagePush?style=flat-square)](LICENSE)
-[![Release Version](https://img.shields.io/github/v/release/xiaoqiangclub/MessagePush?style=flat-square)](https://github.com/xiaoqiangclub/MessagePush/releases/latest)
-[![GitHub Star](https://img.shields.io/github/stars/xiaoqiangclub/MessagePush?style=flat-square)](https://github.com/xiaoqiangclub/MessagePush/stargazers)
-[![GitHub Fork](https://img.shields.io/github/forks/xiaoqiangclub/MessagePush?style=flat-square)](https://github.com/xiaoqiangclub/MessagePush/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/xiaoqiangclub/MessagePush?style=flat-square)](https://github.com/xiaoqiangclub/MessagePush/issues)
-<br>
 [![PyPI v](https://img.shields.io/pypi/v/MessagePush?style=flat-square&color=%23a8e6cf)](https://pypi.org/project/MessagePush/)
 [![PyPI wheel](https://img.shields.io/pypi/wheel/MessagePush?style=flat-square&color=%23dcedc1)](https://pypi.org/project/MessagePush/#files)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/MessagePush?color=%23ffaaa5&style=flat-square)](https://pypi.org/project/MessagePush/)
 <br>
 </div>
-
-
 
 
 > MessagePush 是一个用于通过多个平台异步和同步推送消息的 Python 模块。它支持通过配置文件或直接调用接口发送消息。
