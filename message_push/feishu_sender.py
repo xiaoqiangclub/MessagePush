@@ -16,7 +16,8 @@ class FeishuSender:
 
         :param webhook_url: 飞书机器人Webhook地址
         :param message: 消息内容
-        获取飞书机器人参数：https://open.feishu.cn/document/uQjL04CN/ukTMukTMukTM/bot-v3/bot-api-v3
+        添加机器人文档：https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot
+        获取飞书机器人参数：https://open.feishu.cn/document/server-docs/im-v1/message/create
         """
         async with httpx.AsyncClient() as client:
             try:

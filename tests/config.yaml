@@ -1,0 +1,43 @@
+email:
+  to_email: "example@example.com"
+  from_email: "your_email@example.com"
+  smtp_server: "smtp.example.com"
+  smtp_port: 587
+  smtp_user: "your_email@example.com"
+  smtp_password: "your_password"
+
+wechat:
+  corp_id: "your_corp_id"
+  corp_secret: "your_corp_secret"
+  agent_id: 1000002
+  to_user: "UserID"
+
+dingtalk:
+  webhook_url: "https://oapi.dingtalk.com/robot/send?access_token=your_access_token"
+
+bark:
+  bark_url: "https://api.day.app/your_bark_key"
+
+telegram:
+  bot_token: "your_bot_token"
+  chat_id: "your_chat_id"
+
+igot:
+  igot_key: "your_igot_key"
+
+pushplus:
+  token: "your_pushplus_token"
+
+anpush:
+  token: "your_anpush_token"
+
+feishu:
+  webhook_url: "https://open.feishu.cn/open-apis/bot/v2/hook/your_feishu_webhook"
+
+discord:
+  webhook_url: "https://discord.com/api/webhooks/your_discord_webhook"
+
+whatsapp:
+  api_url: "https://graph.facebook.com/v13.0/your_phone_number_id/messages"
+  phone_number: "your_phone_number"
+  api_token: "your_api_token"

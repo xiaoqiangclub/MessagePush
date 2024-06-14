@@ -7,19 +7,19 @@
 
 import httpx
 
-
 class WeChatSender:
     @staticmethod
-    async def send_wechat_message(wechat_corp_id: str, wechat_corp_secret: str, wechat_agent_id: int, to_user: str,
-                                  message: str):
+    async def send_wechat_message(wechat_corp_id: str, wechat_corp_secret: str, wechat_agent_id: int, message: str, touser: str = "@all", toparty: str = "", totag: str = ""):
         """
         发送微信消息
 
         :param wechat_corp_id: 企业微信ID
         :param wechat_corp_secret: 企业微信密钥
         :param wechat_agent_id: 企业微信应用ID
-        :param to_user: 接收消息的用户ID
         :param message: 消息内容
+        :param touser: 接收消息的用户ID列表，多个用户用 '|' 分隔，默认为 '@all'
+        :param toparty: 接收消息的部门ID列表，多个部门用 '|' 分隔
+        :param totag: 接收消息的标签ID列表，多个标签用 '|' 分隔
         获取企业微信参数：https://work.weixin.qq.com/api/doc/90000/90135/91039
         """
         async with httpx.AsyncClient() as client:
@@ -36,7 +36,9 @@ class WeChatSender:
                     "Content-Type": "application/json"
                 }
                 data = {
-                    "touser": to_user,
+                    "touser": touser,
+                    "toparty": toparty,
+                    "totag": totag,
                     "msgtype": "text",
                     "agentid": wechat_agent_id,
                     "text": {
@@ -66,6 +68,8 @@ class WeChatSender:
             wechat_corp_id=wechat_config['corp_id'],
             wechat_corp_secret=wechat_config['corp_secret'],
             wechat_agent_id=wechat_config['agent_id'],
-            to_user=wechat_config['to_user'],
-            message=message
+            message=message,
+            touser=wechat_config.get('to_user', "@all"),
+            toparty=wechat_config.get('to_party', ""),
+            totag=wechat_config.get('to_tag', "")
         )
