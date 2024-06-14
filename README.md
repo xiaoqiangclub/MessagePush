@@ -217,6 +217,7 @@ asyncio.run(send_whatsapp_example())
 import asyncio
 from message_push import AsyncSender
 
+
 async def send_all_example():
     email_args = (
         "测试邮件", "这是一封测试邮件", "example@example.com", "your_email@example.com",
@@ -250,9 +251,17 @@ async def send_all_example():
         "https://discord.com/api/webhooks/your_discord_webhook", "这是一条测试Discord消息"
     )
     whatsapp_args = (
-        "https://graph.facebook.com/v13.0/your_phone_number_id/messages", "your_phone_number", "这是一条测试WhatsApp消息", "your_api_token"
+        "https://graph.facebook.com/v13.0/your_phone_number_id/messages", "your_phone_number",
+        "这是一条测试WhatsApp消息", "your_api_token"
     )
 
-    await AsyncSender.send_all_messages(email_args, wechat_args, dingtalk_args, bark_args, telegram_args, igot_args, pushplus_args, anpush_args, feishu_args, discord_args, whatsapp_args)
+    await AsyncSender.send_all_messages(email_args, wechat_args, dingtalk_args, bark_args, telegram_args, igot_args,
+                                        pushplus_args, anpush_args, feishu_args, discord_args, whatsapp_args)
+
 
 asyncio.run(send_all_example())
+```
+
+### 捐赠
+
+![支持我](https://gitee.com/xiaoqiangclub/xiaoqiangapps/raw/master/images/xiaoqiangclub_ad.png)
