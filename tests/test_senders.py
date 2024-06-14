@@ -1,4 +1,6 @@
 import asyncio
+
+import message_push
 from message_push import AsyncSender
 
 
@@ -16,20 +18,20 @@ async def test_senders():
 
     wechat_args = {
         "wechat_corp_id": "ww04df6259b771",
-        "wechat_corp_secret": "y88b58_-eX7-1LXMW9v3c1CdQi1I",
+        "wechat_corp_secret": "y88b58_-eX7-1LXMW9v3cCdQi1I",
         "wechat_agent_id": 1000001,
         "message": "这是一条测试微信消息"
     }
 
     dd_args = {
-        "webhook_url": "https://oapi.dingtalk.com/robot/send?access_token=b5142d02f0a5dee6937f049961cf47bf04cf2a6ababfd71bd",
+        "webhook_url": "https://oapi.dingtalk.com/robot/send?access_token=b5142d02f0a5dee6937f01f04cf2a6ababfd71bd",
         "message": "你好"
 
     }
 
     push_args = {
         "message": "这是一条测试消息",
-        "token": "4a8cc3c64e7245a85f02f908"
+        "token": "4a8cc3c64e724a85f02f908"
     }
 
     await AsyncSender.send_messages(pushplus_args=push_args)
@@ -47,5 +49,6 @@ async def test_senders_with_config():
 
 
 if __name__ == '__main__':
+    message_push.version()
     asyncio.run(test_senders())
     asyncio.run(test_senders_with_config())

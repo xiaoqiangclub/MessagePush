@@ -18,8 +18,9 @@ from .discord_sender import DiscordSender
 from .whatsapp_sender import WhatsAppSender
 from .async_sender import AsyncSender
 from .config_loader import ConfigLoader
+from .sender import Sender
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 __all__ = [
     'EmailSender',
@@ -34,7 +35,8 @@ __all__ = [
     'DiscordSender',
     'WhatsAppSender',
     'AsyncSender',
-    'ConfigLoader'
+    'ConfigLoader',
+    'Sender'
 ]
 
 
@@ -56,6 +58,14 @@ def print_logo():
                                                        |__/                         \______/                                   
                """
     print(logo_text)
+
+
+def version():
+    """
+    打印模块的版本号。
+    :return:
+    """
+    print(f"Version: {__version__}")
 
 
 print_logo()

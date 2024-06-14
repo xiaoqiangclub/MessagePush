@@ -1,24 +1,72 @@
-# MessagePush
+<div align="center">
+<a href="https://xiaoqiangclub.51vip.biz/" alt="logo" ><img src="https://gitee.com/xiaoqiangclub/xiaoqiangapps/raw/master/logo/message_push_mini.jpeg"/></a>
 
-`MessagePush` 是一个Python模块，支持通过邮件、微信、钉钉、Bark、Telegram、IGot、PushPlus、Anpush、飞书、Discord和WhatsApp发送消息，并且支持异步方式。
+
+🚀 多平台消息推送工具 🚀
+
+[![GitHub license](https://img.shields.io/github/license/xiaoqiangclub/MessagePush?style=flat-square)](LICENSE)
+[![Release Version](https://img.shields.io/github/v/release/xiaoqiangclub/MessagePush?style=flat-square)](https://github.com/xiaoqiangclub/MessagePush/releases/latest)
+[![GitHub Star](https://img.shields.io/github/stars/xiaoqiangclub/MessagePush?style=flat-square)](https://github.com/xiaoqiangclub/MessagePush/stargazers)
+[![GitHub Fork](https://img.shields.io/github/forks/xiaoqiangclub/MessagePush?style=flat-square)](https://github.com/xiaoqiangclub/MessagePush/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/xiaoqiangclub/MessagePush?style=flat-square)](https://github.com/xiaoqiangclub/MessagePush/issues)
+<br>
+[![PyPI v](https://img.shields.io/pypi/v/MessagePush?style=flat-square&color=%23a8e6cf)](https://pypi.org/project/MessagePush/)
+[![PyPI wheel](https://img.shields.io/pypi/wheel/MessagePush?style=flat-square&color=%23dcedc1)](https://pypi.org/project/MessagePush/#files)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/MessagePush?color=%23ffaaa5&style=flat-square)](https://pypi.org/project/MessagePush/)
+<br>
+</div>
+
+
+
+
+> MessagePush 是一个用于通过多个平台异步和同步推送消息的 Python 模块。它支持通过配置文件或直接调用接口发送消息。
+
+## 支持的平台
+
+✅ [邮件](https://support.google.com/mail/answer/7126229?hl=zh-Hans)
+
+✅ [微信](https://work.weixin.qq.com/api/doc/90000/90135/91039)
+
+✅ [钉钉](https://ding-doc.dingtalk.com/doc#/serverapi2/qf2nxq)
+
+✅ [Bark](https://github.com/Finb/Bark)
+
+✅ [Telegram](https://core.telegram.org/bots/api)
+
+✅ [IGot](https://push.hellyw.com/)
+
+✅ [PushPlus](https://www.pushplus.plus/doc/guide/api.html)
+
+✅ [Anpush](https://anpush.com/doc)
+
+✅ [飞书](https://open.feishu.cn/document/server-docs/im-v1/message/create?appId=cli_a6e3f9e3b95a100b)
+
+✅ [Discord](https://discord.com/developers/docs/intro)
+
+✅ [WhatsApp](https://developers.facebook.com/docs/whatsapp)
 
 ## 安装
 
-```sh
+```bash
 pip install MessagePush
 ```
 
 ## 使用方法
 
-### 发送邮件
+MessagePush 支持同步和异步的调用方式。您可以根据需要选择适合的方式进行消息发送。
+
+### 1. 同步发送消息
+
+您可以通过 `Sender` 类的同步方法发送消息到多个平台。
+
+#### 发送邮件
 
 ```python
-import asyncio
-from message_push import EmailSender
+from message_push import Sender
 
 
-async def send_email_example():
-    await EmailSender.send_email(
+def send_email():
+    Sender.email(
         subject="测试邮件",
         body="这是一封测试邮件",
         to_email="example@example.com",
@@ -30,236 +78,252 @@ async def send_email_example():
     )
 
 
-asyncio.run(send_email_example())
+send_email()
 ```
 
-### 发送微信消息
+#### 发送微信消息
 
 ```python
-import asyncio
-from message_push import WeChatSender
+from message_push import Sender
 
 
-async def send_wechat_example():
-    await WeChatSender.send_wechat_message(
+def send_wechat_message():
+    Sender.wechat(
         wechat_corp_id="your_corp_id",
         wechat_corp_secret="your_corp_secret",
         wechat_agent_id=1000002,
-        to_user="UserID",
         message="这是一条测试微信消息"
     )
 
 
-asyncio.run(send_wechat_example())
+send_wechat_message()
 ```
 
-### 发送钉钉消息
+#### 发送钉钉消息
 
 ```python
-import asyncio
-from message_push import DingTalkSender
+from message_push import Sender
 
 
-async def send_dingtalk_example():
-    await DingTalkSender.send_dingtalk_message(
+def send_dingtalk_message():
+    Sender.dingtalk(
         webhook_url="https://oapi.dingtalk.com/robot/send?access_token=your_access_token",
-        message="这是一条测试钉钉消息"
+        message="这是一条测试钉钉消息",
+        secret="your_secret"  # 可选
     )
 
 
-asyncio.run(send_dingtalk_example())
+send_dingtalk_message()
 ```
 
-### 发送Bark消息
+### 2. 异步发送消息
+
+您可以通过 `Sender` 类的异步方法发送消息到多个平台。
+
+#### 发送邮件
 
 ```python
 import asyncio
-from message_push import BarkSender
+from message_push import Sender
 
 
-async def send_bark_example():
-    await BarkSender.send_bark_message(
-        bark_url="https://api.day.app/your_bark_key",
-        message="这是一条测试Bark消息"
+async def send_email():
+    await Sender.email_async(
+        subject="测试邮件",
+        body="这是一封测试邮件",
+        to_email="example@example.com",
+        from_email="your_email@example.com",
+        smtp_server="smtp.example.com",
+        smtp_port=587,
+        smtp_user="your_email@example.com",
+        smtp_password="your_password"
     )
 
 
-asyncio.run(send_bark_example())
+asyncio.run(send_email())
 ```
 
-### 发送Telegram消息
+#### 发送微信消息
 
 ```python
 import asyncio
-from message_push import TelegramSender
+from message_push import Sender
 
 
-async def send_telegram_example():
-    await TelegramSender.send_telegram_message(
-        bot_token="your_bot_token",
-        chat_id="your_chat_id",
-        message="这是一条测试Telegram消息"
+async def send_wechat_message():
+    await Sender.wechat_async(
+        wechat_corp_id="your_corp_id",
+        wechat_corp_secret="your_corp_secret",
+        wechat_agent_id=1000002,
+        message="这是一条测试微信消息"
     )
 
 
-asyncio.run(send_telegram_example())
+asyncio.run(send_wechat_message())
 ```
 
-### 发送IGot消息
+#### 发送钉钉消息
 
 ```python
 import asyncio
-from message_push import IGotSender
+from message_push import Sender
 
 
-async def send_igot_example():
-    await IGotSender.send_igot_message(
-        igot_key="your_igot_key",
-        message="这是一条测试IGot消息"
+async def send_dingtalk_message():
+    await Sender.dingtalk_async(
+        webhook_url="https://oapi.dingtalk.com/robot/send?access_token=your_access_token",
+        message="这是一条测试钉钉消息",
+        secret="your_secret"  # 可选
     )
 
 
-asyncio.run(send_igot_example())
+asyncio.run(send_dingtalk_message())
 ```
 
-### 发送PushPlus消息
+### 3. 使用配置文件发送消息
+
+您可以通过 `Sender` 类的同步或异步方法使用配置文件发送消息到多个平台。
+
+#### 同步方式
 
 ```python
-import asyncio
-from message_push import PushPlusSender
+from message_push import Sender
 
 
-async def send_pushplus_example():
-    await PushPlusSender.send_pushplus_message(
-        token="your_pushplus_token",
-        message="这是一条测试PushPlus消息"
-    )
-
-
-asyncio.run(send_pushplus_example())
-```
-
-### 发送Anpush消息
-
-```python
-import asyncio
-from message_push import AnpushSender
-
-
-async def send_anpush_example():
-    await AnpushSender.send_anpush_message(
-        token="your_anpush_token",
+def send_messages_with_config():
+    Sender.send_messages_with_config_sync(
+        config_path="config.yaml",  # 或者 "config.json"
+        message="这是一条测试消息",
         title="测试标题",
-        message="这是一条测试Anpush消息",
         url="https://example.com"
     )
 
 
-asyncio.run(send_anpush_example())
+send_messages_with_config()
 ```
 
-### 发送飞书消息
+#### 异步方式
 
 ```python
 import asyncio
-from message_push import FeishuSender
+from message_push import Sender
 
 
-async def send_feishu_example():
-    await FeishuSender.send_feishu_message(
-        webhook_url="https://open.feishu.cn/open-apis/bot/v2/hook/your_feishu_webhook",
-        message="这是一条测试飞书消息"
+async def send_messages_with_config():
+    await Sender.send_messages_with_config_async(
+        config_path="config.yaml",  # 或者 "config.json"
+        message="这是一条测试消息",
+        title="测试标题",
+        url="https://example.com"
     )
 
 
-asyncio.run(send_feishu_example())
+asyncio.run(send_messages_with_config())
 ```
 
-### 发送Discord消息
+## 示例配置文件
 
-```python
-import asyncio
-from message_push import DiscordSender
+### YAML 格式
 
+```yaml
+email:
+  to_email: "example@example.com"
+  from_email: "your_email@example.com"
+  smtp_server: "smtp.example.com"
+  smtp_port: 587
+  smtp_user: "your_email@example.com"
+  smtp_password: "your_password"
 
-async def send_discord_example():
-    await DiscordSender.send_discord_message(
-        webhook_url="https://discord.com/api/webhooks/your_discord_webhook",
-        message="这是一条测试Discord消息"
-    )
+wechat:
+  corp_id: "your_corp_id"
+  corp_secret: "your_corp_secret"
+  agent_id: 1000002
+  to_user: "UserID"
 
+dingtalk:
+  webhook_url: "https://oapi.dingtalk.com/robot/send?access_token=your_access_token"
+  secret: "your_secret"  # 可选
 
-asyncio.run(send_discord_example())
+bark:
+  bark_url: "https://api.day.app/your_bark_key"
+
+telegram:
+  bot_token: "your_bot_token"
+  chat_id: "your_chat_id"
+
+igot:
+  igot_key: "your_igot_key"
+
+pushplus:
+  token: "your_pushplus_token"
+
+anpush:
+  token: "your_anpush_token"
+
+feishu:
+  webhook_url: "https://open.feishu.cn/open-apis/bot/v2/hook/your_feishu_webhook"
+
+discord:
+  webhook_url: "https://discord.com/api/webhooks/your_discord_webhook"
+
+whatsapp:
+  api_url: "https://graph.facebook.com/v13.0/your_phone_number_id/messages"
+  phone_number: "your_phone_number"
+  api_token: "your_api_token"
 ```
 
-### 发送WhatsApp消息
+### JSON 格式
 
-```python
-import asyncio
-from message_push import WhatsAppSender
-
-
-async def send_whatsapp_example():
-    await WhatsAppSender.send_whatsapp_message(
-        api_url="https://graph.facebook.com/v13.0/your_phone_number_id/messages",
-        phone_number="your_phone_number",
-        message="这是一条测试WhatsApp消息",
-        api_token="your_api_token"
-    )
-
-
-asyncio.run(send_whatsapp_example())
-```
-
-### 异步发送所有消息
-
-```python
-import asyncio
-from message_push import AsyncSender
-
-
-async def send_all_example():
-    email_args = (
-        "测试邮件", "这是一封测试邮件", "example@example.com", "your_email@example.com",
-        "smtp.example.com", 587, "your_email@example.com", "your_password"
-    )
-    wechat_args = (
-        "your_corp_id", "your_corp_secret", 1000002, "UserID", "这是一条测试微信消息"
-    )
-    dingtalk_args = (
-        "https://oapi.dingtalk.com/robot/send?access_token=your_access_token", "这是一条测试钉钉消息"
-    )
-    bark_args = (
-        "https://api.day.app/your_bark_key", "这是一条测试Bark消息"
-    )
-    telegram_args = (
-        "your_bot_token", "your_chat_id", "这是一条测试Telegram消息"
-    )
-    igot_args = (
-        "your_igot_key", "这是一条测试IGot消息"
-    )
-    pushplus_args = (
-        "your_pushplus_token", "这是一条测试PushPlus消息"
-    )
-    anpush_args = (
-        "your_anpush_token", "测试标题", "这是一条测试Anpush消息", "https://example.com"
-    )
-    feishu_args = (
-        "https://open.feishu.cn/open-apis/bot/v2/hook/your_feishu_webhook", "这是一条测试飞书消息"
-    )
-    discord_args = (
-        "https://discord.com/api/webhooks/your_discord_webhook", "这是一条测试Discord消息"
-    )
-    whatsapp_args = (
-        "https://graph.facebook.com/v13.0/your_phone_number_id/messages", "your_phone_number",
-        "这是一条测试WhatsApp消息", "your_api_token"
-    )
-
-    await AsyncSender.send_all_messages(email_args, wechat_args, dingtalk_args, bark_args, telegram_args, igot_args,
-                                        pushplus_args, anpush_args, feishu_args, discord_args, whatsapp_args)
-
-
-asyncio.run(send_all_example())
+```json
+{
+  "email": {
+    "to_email": "example@example.com",
+    "from_email": "your_email@example.com",
+    "smtp_server": "smtp.example.com",
+    "smtp_port": 587,
+    "smtp_user": "your_email@example.com",
+    "smtp_password": "your_password"
+  },
+  "wechat": {
+    "corp_id": "your_corp_id",
+    "corp_secret": "your_corp_secret",
+    "agent_id": 1000002,
+    "to_user": "UserID"
+  },
+  "dingtalk": {
+    "webhook_url": "https://oapi.dingtalk.com/robot/send?access_token=your_access_token",
+    "secret": "your_secret"
+    #
+    可选
+  },
+  "bark": {
+    "bark_url": "https://api.day.app/your_bark_key"
+  },
+  "telegram": {
+    "bot_token": "your_bot_token",
+    "chat_id": "your_chat_id"
+  },
+  "igot": {
+    "igot_key": "your_igot_key"
+  },
+  "pushplus": {
+    "token": "your_pushplus_token"
+  },
+  "anpush": {
+    "token": "your_anpush_token"
+  },
+  "feishu": {
+    "webhook_url": "https://open.feishu.cn/open-apis/bot/v2/hook/your_feishu_webhook"
+  },
+  "discord": {
+    "webhook_url": "https://discord.com/api/webhooks/your_discord_webhook"
+  },
+  "whatsapp": {
+    "api_url": "https://graph.facebook.com/v13.0/your_phone_number_id/messages",
+    "phone_number": "your_phone_number",
+    "api_token": "your_api_token"
+  }
+}
 ```
 
 ### 捐赠
