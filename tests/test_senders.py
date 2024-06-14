@@ -52,6 +52,6 @@ async def test_senders_with_config():
     await AsyncSender.send_messages_with_config(config_path_json, message, title, url)
 
 
-if __name__ == '__main__':
-    asyncio.run(test_senders())
+# if __name__ == '__main__':
+#     asyncio.run(test_senders())
     # asyncio.run(test_senders_with_config())
