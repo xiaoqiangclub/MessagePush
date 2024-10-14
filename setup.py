@@ -13,7 +13,7 @@ setup(
     description='A Python package for sending messages via various platforms asynchronously.',
     long_description=open('README.md', 'r', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/MessagePush',
+    url='https://github.com/xiaoqiangclub/MessagePush',
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
